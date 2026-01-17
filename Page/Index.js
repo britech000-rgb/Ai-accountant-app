@@ -36,3 +36,9 @@ export default function Home() {
     </main>
   );
   }
+function aiMessage(income, expense) {
+  if (expense > income) {
+    return "⚠️ You are overspending. Reduce expenses.";
+  }
+  return "✅ You are financially stable.";
+}
