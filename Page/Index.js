@@ -1,18 +1,23 @@
 import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Home() {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("income");
-  const [items, setItems] = useState([]);
 
-  function addTransaction() {
-    if (!amount) return;
-    setItems([...items, { amount, type }]);
+  async function addTransaction() {
+    await addDoc(collection(db, "transactions"), {
+      amount,
+      type,
+      createdAt: new Date()
+    });
+    alert("Saved");
     setAmount("");
   }
 
   return (
-    <main style={{ padding: 20, fontFamily: "Arial" }}>
+    <main style={{ padding: 20 }}>
       <h1>AI Accountant Dashboard</h1>
 
       <input
@@ -27,16 +32,7 @@ export default function Home() {
         <option value="expense">Expense</option>
       </select>
 
-      <button onClick={addTransaction}>Add</button>
-
-      <h2>Transactions</h2>
-      <ul>
-        {items.map((i, index) => (
-          <li key={index}>
-            {i.type.toUpperCase()} - KES {i.amount}
-          </li>
-        ))}
-      </ul>
+      <button onClick={addTransaction}>Save Transaction</button>
     </main>
   );
-}
+  }
