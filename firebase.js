@@ -8,8 +8,7 @@ const firebaseConfig = {
   projectId:  "ai-accountant-bb03e",
   storageBucket: "ai-accountant-bb03e.firebasestorage.app",
   messagingSenderId: "470716870384",
-  appId: "1:470716870384:web:d863f0c9a2f91e55609c35",
-  measurementId: "G-8K0JPW4LN0"
+  appld"YOUR-APP-ID"
 };
 const app = initializeApp(firebaseConfig);
 
